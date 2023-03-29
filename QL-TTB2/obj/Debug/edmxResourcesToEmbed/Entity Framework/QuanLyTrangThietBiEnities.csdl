@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyTrangThietBiDTHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHUCVU">
+    <Key>
+      <PropertyRef Name="MaCV" />
+    </Key>
+    <Property Name="MaCV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenCV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__MaCV__267ABA7A" FromRole="CHUCVU" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="LOAITHIETBI">
+    <Key>
+      <PropertyRef Name="MaLoaiTB" />
+    </Key>
+    <Property Name="MaLoaiTB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiTB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="THIETBIs" Relationship="Self.FK__THIETBI__MaLoaiT__4222D4EF" FromRole="LOAITHIETBI" ToRole="THIETBI" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTiNH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="CCCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MaCV" Type="Int32" />
+    <Property Name="MaPB" Type="Int32" />
+    <NavigationProperty Name="CHUCVU" Relationship="Self.FK__NHANVIEN__MaCV__267ABA7A" FromRole="NHANVIEN" ToRole="CHUCVU" />
+    <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK__PHIEUNHAP__MaNV__5812160E" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
+  </EntityType>
+  <EntityType Name="PHIEUNHAP">
+    <Key>
+      <PropertyRef Name="SoPhieuN" />
+    </Key>
+    <Property Name="SoPhieuN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NgayNhap" Type="DateTime" Precision="0" />
+    <Property Name="SoLuongChungTu" Type="Int32" />
+    <Property Name="SoLuongThucNhap" Type="Int32" />
+    <Property Name="MaTB" Type="Int32" />
+    <Property Name="MaNV" Type="Int32" />
+    <Property Name="TrangThai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__PHIEUNHAP__MaNV__5812160E" FromRole="PHIEUNHAP" ToRole="NHANVIEN" />
+    <NavigationProperty Name="THIETBI" Relationship="Self.FK__PHIEUNHAP__MaTB__571DF1D5" FromRole="PHIEUNHAP" ToRole="THIETBI" />
+  </EntityType>
+  <EntityType Name="PHIEUXUAT">
+    <Key>
+      <PropertyRef Name="SoPhieuX" />
+    </Key>
+    <Property Name="SoPhieuX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPhieuX" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MaTB" Type="Int32" />
+    <Property Name="NgayXuat" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="THIETBI" Relationship="Self.FK__PHIEUXUAT__MaTB__48CFD27E" FromRole="PHIEUXUAT" ToRole="THIETBI" />
+  </EntityType>
+  <EntityType Name="PHONGBAN">
+    <Key>
+      <PropertyRef Name="MaPB" />
+    </Key>
+    <Property Name="MaPB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TinhTrang" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="THIETBI">
+    <Key>
+      <PropertyRef Name="MaTB" />
+    </Key>
+    <Property Name="MaTB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Double" />
+    <Property Name="ChucNang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phong" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MaLoaiTB" Type="Int32" />
+    <Property Name="TinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MaPB" Type="Int32" />
+    <NavigationProperty Name="LOAITHIETBI" Relationship="Self.FK__THIETBI__MaLoaiT__4222D4EF" FromRole="THIETBI" ToRole="LOAITHIETBI" />
+    <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK__PHIEUNHAP__MaTB__571DF1D5" FromRole="THIETBI" ToRole="PHIEUNHAP" />
+    <NavigationProperty Name="PHIEUXUATs" Relationship="Self.FK__PHIEUXUAT__MaTB__48CFD27E" FromRole="THIETBI" ToRole="PHIEUXUAT" />
+  </EntityType>
+  <Association Name="FK__NHANVIEN__MaCV__267ABA7A">
+    <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCVU">
+        <PropertyRef Name="MaCV" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="MaCV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THIETBI__MaLoaiT__4222D4EF">
+    <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="0..1" />
+    <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAITHIETBI">
+        <PropertyRef Name="MaLoaiTB" />
+      </Principal>
+      <Dependent Role="THIETBI">
+        <PropertyRef Name="MaLoaiTB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUNHAP__MaNV__5812160E">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUNHAP__MaTB__571DF1D5">
+    <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="0..1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THIETBI">
+        <PropertyRef Name="MaTB" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="MaTB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUXUAT__MaTB__48CFD27E">
+    <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="0..1" />
+    <End Role="PHIEUXUAT" Type="Self.PHIEUXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THIETBI">
+        <PropertyRef Name="MaTB" />
+      </Principal>
+      <Dependent Role="PHIEUXUAT">
+        <PropertyRef Name="MaTB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyTrangThietBiDTHEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />
+    <EntitySet Name="LOAITHIETBIs" EntityType="Self.LOAITHIETBI" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="PHIEUNHAPs" EntityType="Self.PHIEUNHAP" />
+    <EntitySet Name="PHIEUXUATs" EntityType="Self.PHIEUXUAT" />
+    <EntitySet Name="PHONGBANs" EntityType="Self.PHONGBAN" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="THIETBIs" EntityType="Self.THIETBI" />
+    <AssociationSet Name="FK__NHANVIEN__MaCV__267ABA7A" Association="Self.FK__NHANVIEN__MaCV__267ABA7A">
+      <End Role="CHUCVU" EntitySet="CHUCVUs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THIETBI__MaLoaiT__4222D4EF" Association="Self.FK__THIETBI__MaLoaiT__4222D4EF">
+      <End Role="LOAITHIETBI" EntitySet="LOAITHIETBIs" />
+      <End Role="THIETBI" EntitySet="THIETBIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUNHAP__MaNV__5812160E" Association="Self.FK__PHIEUNHAP__MaNV__5812160E">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUNHAP__MaTB__571DF1D5" Association="Self.FK__PHIEUNHAP__MaTB__571DF1D5">
+      <End Role="THIETBI" EntitySet="THIETBIs" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUXUAT__MaTB__48CFD27E" Association="Self.FK__PHIEUXUAT__MaTB__48CFD27E">
+      <End Role="THIETBI" EntitySet="THIETBIs" />
+      <End Role="PHIEUXUAT" EntitySet="PHIEUXUATs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

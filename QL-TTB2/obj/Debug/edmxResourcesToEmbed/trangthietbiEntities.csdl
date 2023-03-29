@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrangThietBiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TrangThietBiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NhanViens" EntityType="TrangThietBiModel.NhanVien" />
+    <EntitySet Name="PhongBans" EntityType="TrangThietBiModel.PhongBan" />
+    <EntitySet Name="TaiKhoans" EntityType="TrangThietBiModel.TaiKhoan" />
+    <AssociationSet Name="FK_NhanVien_PhongBan" Association="TrangThietBiModel.FK_NhanVien_PhongBan">
+      <End Role="PhongBan" EntitySet="PhongBans" />
+      <End Role="NhanVien" EntitySet="NhanViens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhanVien_TaiKhoan" Association="TrangThietBiModel.FK_NhanVien_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="NhanVien" EntitySet="NhanViens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="manhanvien" />
+    </Key>
+    <Property Name="manhanvien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+    <Property Name="gioitinh" Type="Boolean" />
+    <Property Name="cccd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dienthoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="hinhanh" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="maphong" Type="Int32" Nullable="false" />
+    <Property Name="tentaikhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PhongBan" Relationship="TrangThietBiModel.FK_NhanVien_PhongBan" FromRole="NhanVien" ToRole="PhongBan" />
+    <NavigationProperty Name="TaiKhoan" Relationship="TrangThietBiModel.FK_NhanVien_TaiKhoan" FromRole="NhanVien" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="PhongBan">
+    <Key>
+      <PropertyRef Name="maphong" />
+    </Key>
+    <Property Name="maphong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenphong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mathietbi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NhanViens" Relationship="TrangThietBiModel.FK_NhanVien_PhongBan" FromRole="PhongBan" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="tentaikhoan" />
+    </Key>
+    <Property Name="tentaikhoan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NhanViens" Relationship="TrangThietBiModel.FK_NhanVien_TaiKhoan" FromRole="TaiKhoan" ToRole="NhanVien" />
+  </EntityType>
+  <Association Name="FK_NhanVien_PhongBan">
+    <End Type="TrangThietBiModel.PhongBan" Role="PhongBan" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TrangThietBiModel.NhanVien" Role="NhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhongBan">
+        <PropertyRef Name="maphong" />
+      </Principal>
+      <Dependent Role="NhanVien">
+        <PropertyRef Name="maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhanVien_TaiKhoan">
+    <End Type="TrangThietBiModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
+    <End Type="TrangThietBiModel.NhanVien" Role="NhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="tentaikhoan" />
+      </Principal>
+      <Dependent Role="NhanVien">
+        <PropertyRef Name="tentaikhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

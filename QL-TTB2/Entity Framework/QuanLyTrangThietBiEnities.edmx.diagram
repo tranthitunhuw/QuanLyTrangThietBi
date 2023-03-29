@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a2aa3706067d46b492f1178b538872bb" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.CHUCVU" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.LOAITHIETBI" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.NHANVIEN" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.PHIEUNHAP" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.PHIEUXUAT" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.PHONGBAN" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyTrangThietBiDTHModel.THIETBI" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyTrangThietBiDTHModel.FK__NHANVIEN__MaCV__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyTrangThietBiDTHModel.FK__THIETBI__MaLoaiT__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyTrangThietBiDTHModel.FK__PHIEUNHAP__MaNV__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyTrangThietBiDTHModel.FK__PHIEUNHAP__MaTB__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyTrangThietBiDTHModel.FK__PHIEUXUAT__MaTB__48CFD27E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

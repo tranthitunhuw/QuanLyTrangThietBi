@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyTrangThietBiDTHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CHUCVU">
+    <Key>
+      <PropertyRef Name="MaCV" />
+    </Key>
+    <Property Name="MaCV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenCV" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="LOAITHIETBI">
+    <Key>
+      <PropertyRef Name="MaLoaiTB" />
+    </Key>
+    <Property Name="MaLoaiTB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiTB" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="255" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="255" />
+    <Property Name="GioiTiNH" Type="nvarchar" MaxLength="255" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="CCCD" Type="nvarchar" MaxLength="255" />
+    <Property Name="MaCV" Type="int" />
+    <Property Name="MaPB" Type="int" />
+  </EntityType>
+  <EntityType Name="PHIEUNHAP">
+    <Key>
+      <PropertyRef Name="SoPhieuN" />
+    </Key>
+    <Property Name="SoPhieuN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayNhap" Type="date" />
+    <Property Name="SoLuongChungTu" Type="int" />
+    <Property Name="SoLuongThucNhap" Type="int" />
+    <Property Name="MaTB" Type="int" />
+    <Property Name="MaNV" Type="int" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="PHIEUXUAT">
+    <Key>
+      <PropertyRef Name="SoPhieuX" />
+    </Key>
+    <Property Name="SoPhieuX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPhieuX" Type="nvarchar" MaxLength="255" />
+    <Property Name="MaTB" Type="int" />
+    <Property Name="NgayXuat" Type="date" />
+  </EntityType>
+  <EntityType Name="PHONGBAN">
+    <Key>
+      <PropertyRef Name="MaPB" />
+    </Key>
+    <Property Name="MaPB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPB" Type="nvarchar" MaxLength="255" />
+    <Property Name="TinhTrang" Type="nvarchar" MaxLength="10" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'QuanLyTrangThietBiDTH.dbo.TAIKHOAN' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TAIKHOAN">
+          <Property Name="MaNV" Type="int" />
+          <Property Name="TenTaiKhoan" Type="nvarchar" MaxLength="255" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="THIETBI">
+    <Key>
+      <PropertyRef Name="MaTB" />
+    </Key>
+    <Property Name="MaTB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTB" Type="nvarchar" MaxLength="255" />
+    <Property Name="Gia" Type="float" />
+    <Property Name="ChucNang" Type="nvarchar" MaxLength="255" />
+    <Property Name="Phong" Type="nvarchar" MaxLength="255" />
+    <Property Name="MaLoaiTB" Type="int" />
+    <Property Name="TinhTrang" Type="nvarchar" MaxLength="255" />
+    <Property Name="MaPB" Type="int" />
+  </EntityType>
+  <Association Name="FK__NHANVIEN__MaCV__267ABA7A">
+    <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCVU">
+        <PropertyRef Name="MaCV" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="MaCV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUNHAP__MaNV__5812160E">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUNHAP__MaTB__571DF1D5">
+    <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="0..1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THIETBI">
+        <PropertyRef Name="MaTB" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="MaTB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUXUAT__MaTB__48CFD27E">
+    <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="0..1" />
+    <End Role="PHIEUXUAT" Type="Self.PHIEUXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THIETBI">
+        <PropertyRef Name="MaTB" />
+      </Principal>
+      <Dependent Role="PHIEUXUAT">
+        <PropertyRef Name="MaTB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'QuanLyTrangThietBiDTH.dbo.TAIKHOAN' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__TAIKHOAN__MaNV__286302EC" />-->
+  <Association Name="FK__THIETBI__MaLoaiT__4222D4EF">
+    <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="0..1" />
+    <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAITHIETBI">
+        <PropertyRef Name="MaLoaiTB" />
+      </Principal>
+      <Dependent Role="THIETBI">
+        <PropertyRef Name="MaLoaiTB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyTrangThietBiDTHModelStoreContainer">
+    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAITHIETBI" EntityType="Self.LOAITHIETBI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUXUAT" EntityType="Self.PHIEUXUAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHONGBAN" EntityType="Self.PHONGBAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THIETBI" EntityType="Self.THIETBI" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__NHANVIEN__MaCV__267ABA7A" Association="Self.FK__NHANVIEN__MaCV__267ABA7A">
+      <End Role="CHUCVU" EntitySet="CHUCVU" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUNHAP__MaNV__5812160E" Association="Self.FK__PHIEUNHAP__MaNV__5812160E">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUNHAP__MaTB__571DF1D5" Association="Self.FK__PHIEUNHAP__MaTB__571DF1D5">
+      <End Role="THIETBI" EntitySet="THIETBI" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUXUAT__MaTB__48CFD27E" Association="Self.FK__PHIEUXUAT__MaTB__48CFD27E">
+      <End Role="THIETBI" EntitySet="THIETBI" />
+      <End Role="PHIEUXUAT" EntitySet="PHIEUXUAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THIETBI__MaLoaiT__4222D4EF" Association="Self.FK__THIETBI__MaLoaiT__4222D4EF">
+      <End Role="LOAITHIETBI" EntitySet="LOAITHIETBI" />
+      <End Role="THIETBI" EntitySet="THIETBI" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
